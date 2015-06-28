@@ -1,0 +1,31 @@
+<ion-view title="Dashboard">
+  <ion-content >
+      <ion-refresher pulling-icon="ion-arrow-down-a" refreshing-icon="ion-loading-c" on-refresh="hardRefresh()">
+      </ion-refresher>
+
+
+      <ion-list>
+          <!-- href="#prodetail/{{item.id}}"-->
+          <ion-item  ng-repeat="item in results"
+                     class="item item-thumbnail-left"
+                  ng-click="click(item.id)"
+                  >
+              <img ng-src="{{item.get('thumbFile')._url}}">
+              <h2>{{item.id}}</h2>
+              <p>{{item.get('name')}}</p>
+              <p>{{item.createdAt}}</p>
+              <p id="{{item.id}}"></p>
+
+
+              <!--<embed embed-src="http://player.youku.com/embed/XODMxMDA4NjE2" type="application/x-shockwave-flash" allowfullscreen="true" allowScriptAccess="always"></embed>-->
+          </ion-item>
+
+      </ion-list>
+      <ion-infinite-scroll
+              ng-if="more"
+              icon="ion-loading-c"
+              on-infinite="loadGithubCommits()"
+              distance="1%">
+      </ion-infinite-scroll>
+  </ion-content>
+</ion-view>

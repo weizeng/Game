@@ -1,0 +1,46 @@
+<ion-view title="Account">
+    <ion-nav-buttons side="right">
+        <button class="button" ng-click="addComment()">
+            add
+        </button>
+    </ion-nav-buttons>
+  <ion-content >
+
+      <ion-refresher pulling-icon="ion-arrow-down-a" refreshing-icon="ion-loading-c" on-refresh="hardRefresh()">
+      </ion-refresher>
+
+
+      <ion-list>
+          <ion-item  ng-repeat="item in results"
+                     ng-click="click(item.id)"
+                     style="border-width: 0px;box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);"
+                  >
+              <div class="item item-avatar">
+                <img src="mcfly.jpg">
+                <h2>Marty McFly</h2>
+                <p>November 05, 1955</p>
+              </div>
+
+              <div class="item item-body" style="padding: 0px">
+                  <img class="full-image" src="{{item.get('image')._url}}">
+                  <div style="padding-left: 10px">
+                  <p>{{item.get('title')}}</p>
+                  <p>
+
+                  <p>{{item.createdAt}}</p>
+                      <a href="#" class="subdued">1 Like</a>
+                      <a href="#" class="subdued">5 Comments</a>
+                  </p>
+                  </div>
+              </div>
+          </ion-item>
+
+      </ion-list>
+      <ion-infinite-scroll
+              ng-if="more"
+              icon="ion-loading-c"
+              on-infinite="loadMorePost()"
+              distance="1%">
+      </ion-infinite-scroll>
+  </ion-content>
+</ion-view>
