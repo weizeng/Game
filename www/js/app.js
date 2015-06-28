@@ -80,7 +80,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     .state('addXy', {
         url: '/addXy',
         templateUrl: 'templates/xy_add.html',
-        controller: 'AccountCtrl'
+        controller: 'AddXyCtrl'
     });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/dash');

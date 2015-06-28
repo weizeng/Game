@@ -70,6 +70,46 @@ angular.module('starter.controllers', [])
         $scope.friend = Friends.get($stateParams.friendId);
     })
 
+    .controller('AddXyCtrl', function($rootScope,$scope, $ionicLoading){
+        $scope.xy = {content:null};
+        $scope.addComment = function() {
+            var query = new Bmob.Query("_User");
+            query.first({
+                //查询要保存的用户，这个对象应该要被序列话到本地
+                success: function (user) {
+                    $rootScope.user = user;
+//                    alert();
+                    localStorage.setItem( 'data', JSON.stringify(user) );
+                    var aa = localStorage.getItem('data');
+                    var outP = eval('('+aa+')');
+                    console.log(outP);
+
+                    var Xy_List = Bmob.Object.extend("Xy_List");
+                    // 插入许愿列表
+                    //var aa = Bmob.Query(Xy_List);
+                    var ddd = new Xy_List();
+
+                    ddd.set("title",$scope.xy.content);
+                    // Pointer指针
+                    ddd.set("userId",user);
+                    ddd.save(null,{
+                        success:function(ddd){
+                            alert("宣言成功，和好友一起宣言");
+                            var relation = ddd.relation("commentId");
+                        },
+                        error:function(ddd, error){
+                            alert("许愿保存失败:"+error.message);
+                        }
+                    });
+
+                },
+                error: function(error) {
+                    alert("查询失败: " + error.code + " " + error.message);
+                }
+            });
+        }
+    })
+
     .controller('AccountCtrl', function ($rootScope,$scope, $ionicLoading) {
         $scope.addComment = function() {
 //            var query2 = new Bmob.Query(Xy_List);
@@ -100,7 +140,8 @@ angular.module('starter.controllers', [])
                     // 插入许愿列表
                     //var aa = Bmob.Query(Xy_List);
                     var ddd = new Xy_List();
-                    ddd.set("title","宣言毕业");
+                    $scope.xy = {};
+                    ddd.set("title",$scrope.xy.content);
                     // Pointer指针
                     ddd.set("userId",user);
                     ddd.save(null,{
