@@ -41,7 +41,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     .state('tab.my', {
       url: '/my',
       views: {
-        'tab-dash': {
+        'tab-my': {
           templateUrl: 'templates/tab-my.html',
           controller: 'MyBoardCtrl'
         }
@@ -51,7 +51,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     .state('tab.xylist', {
       url: '/xylist',
       views: {
-        'tab-account': {
+        'tab-xylist': {
           templateUrl: 'templates/tab-xylist.html',
           controller: 'XYListCtrl'
         }

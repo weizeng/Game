@@ -1,6 +1,8 @@
 /**
  * Created by leo on 15/7/1.
+ * 这个是备份的js文件，有些资源可以暂时放在这里
  */
+
 //备份一些资料
 angular.module('starter.controllers', [])
     .controller('DashCtrl', function ($scope, $ionicLoading) {
