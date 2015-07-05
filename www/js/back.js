@@ -171,7 +171,7 @@ angular.module('starter.controllers', [])
                             comment.set("content","祝贺你毕业了");
                             comment.save(null,{
                                 success:function(comment){
-//                            alert("插入成功");
+                                    // 添加评论顺序：添加评论，找到当前的这条许愿，取出关联的commentId，add评论，再把这条许愿save一下
                                     relation.add(comment);
                                     ddd.save();
                                     alert("留言保存成功");

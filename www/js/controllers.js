@@ -10,7 +10,43 @@ angular.module('starter.controllers', [])
     })
 
     // 许愿的列表
-    .controller('XYListCtrl', function ($rootScope,$scope, $ionicLoading) {
+    .controller('XYListCtrl', function ($rootScope, $scope, $ionicLoading) {
+        //TODO 增加对某一个评论点赞的方法
+        $scope.goZan = function(xy){
+            alert(xy);
+
+            var query = new Bmob.Query("_User");
+            query.first({
+                //查询要保存的用户，这个对象应该要被序列话到本地
+                success: function (user) {
+                    $rootScope.user = user;
+                    // 添加到赞列表
+                    var zanObject = Bmob.Object.extend("Zan");
+                    // 插入许愿列表
+                    //var aa = Bmob.Query(Xy_List);
+                    var zan = new zanObject();
+                    // Pointer指针
+                    zan.set("userId",user);
+                    zan.save(null,{
+                        success:function(zan){
+                            // 添加成功之后，将之前查询到的评论信息的relation字段重置。关联起来
+                            var relation = xy.relation("zan");
+                            relation.add(zan);
+                            xy.save();
+                            alert("保存成功");
+                        },
+                        error:function(ddd, error){
+                            alert("抱歉，学长，错了。。"+error.message);
+                        }
+                    });
+                }
+            });
+        }
+
+        $scope.goXy = function(id){
+            alert(id);
+        }
+
         // 初始化宣言墙的
         Bmob.initialize("44022f09eb84ad42e812bbbb9f2894c4", "629112d8473f92cc6780ace14a1ab5aa");
         loadMore = function () {
@@ -78,14 +114,14 @@ angular.module('starter.controllers', [])
             loadMore();
         }
 
-        $scope.click = function(id){
-            console.log("click:"+id);
-        }
+
     })
 
     // 增加我的毕业说
     .controller('AddXyCtrl', function($rootScope,$scope, $ionicLoading){
         $scope.xy = {content:null};
+
+        //TODO 增加用户评论的方法
         $scope.addComment = function() {
             var query = new Bmob.Query("_User");
             query.first({
@@ -98,9 +134,6 @@ angular.module('starter.controllers', [])
                     var bytes = "Hello, World!";
                     var file = new Bmob.File("hello.txt", bytes);
                     file.save().then(function(obj) {
-                        //alert(obj.url());
-
-//                    alert();
                         localStorage.setItem( 'data', JSON.stringify(user) );
                         var aa = localStorage.getItem('data');
                         var outP = eval('('+aa+')');
