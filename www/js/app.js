@@ -58,6 +58,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     })
 
+    .state('share', {
+      url: '/share',
+      templateUrl: 'templates/index_share.html'
+    })
+
     .state('addXy', {
         url: '/addXy',
         templateUrl: 'templates/xy_add.html',

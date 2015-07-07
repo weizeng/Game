@@ -175,6 +175,8 @@ angular.module('starter.controllers', [])
 
     // 我的设置
     .controller('MyBoardCtrl', function ($rootScope,$scope, $ionicLoading) {
+        $scope.testShare = function() {
 
+        }
     })
 ;

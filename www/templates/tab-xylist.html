@@ -1,9 +1,17 @@
 <ion-view title="毕业大家说">
+    <ion-nav-buttons side="left">
+        <button class="button" ui-sref="share()">
+            testShare
+        </button>
+    </ion-nav-buttons>
+
     <ion-nav-buttons side="right">
         <button class="button" ui-sref="addXy()">
             add
         </button>
     </ion-nav-buttons>
+
+
   <ion-content >
       <ion-refresher pulling-icon="ion-arrow-down-a" refreshing-icon="ion-loading-c" on-refresh="hardRefresh()">
       </ion-refresher>
