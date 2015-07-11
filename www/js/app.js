@@ -60,7 +60,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
     .state('share', {
       url: '/share',
-      templateUrl: 'templates/index_share.html'
+      templateUrl: 'templates/index_share.html',
+      controller:"ShareCtrl"
     })
 
     .state('addXy', {

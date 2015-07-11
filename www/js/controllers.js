@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['ngCordova'])
     // 预留可以删除
     .controller('FriendsCtrl', function ($scope, Friends) {
         $scope.friends = Friends.all();
@@ -121,6 +121,7 @@ angular.module('starter.controllers', [])
     .controller('AddXyCtrl', function($rootScope,$scope, $ionicLoading){
         $scope.xy = {content:null};
 
+
         //TODO 增加用户评论的方法
         $scope.addComment = function() {
             var query = new Bmob.Query("_User");
@@ -179,4 +180,55 @@ angular.module('starter.controllers', [])
 
         }
     })
-;
+
+    .controller('ShareCtrl', function ($ionicPlatform, $cordovaFile, $rootScope,$scope, $ionicLoading) {
+        //
+
+        $ionicPlatform.ready(function() {
+//            $cordovaPlugin.someFunction().then(success, error);
+            alert('ready');
+        });
+
+//        $cordovaFile.getFreeDiskSpace()
+//            .then(function (success) {
+//                // success in kilobytes
+//                alert(success);
+//            }, function (error) {
+//                // error
+//                alert(error);
+//            });
+//
+        var opt = {
+            'data' : {
+                'content' : {
+                    'text' : 'fffff' //要分享的文字
+                }
+            }
+        }
+//        $("#btn").umshare(opt);
+        window.umappkey = '55064267fd98c5a4a500076d';//5598edc167e58e4247001e1e 设置来自友盟的APPKEY,请从友盟网站申请http://www.umeng.com
+        //login
+        $scope.loginBtn = function() {
+            console.log('start login');
+            $.fn.umshare.login('sina', function (user) {
+                console.log('usersuerseru');
+                $.fn.umshare.tip('登录成功,token:' + user.token + ', uid:' + user.uid);
+
+
+//                $("#loginInfo").html('登录成功,token:' + user.token + ', uid:' + user.uid);
+            });
+
+//            $.fn.umshare.screenshot(function(url){
+//                alert("url:" + url);
+//                var opt = {
+//                    'data' : {
+//                        'content' : {
+//                            'text' : '友盟分享组件帮您接入和升级微博、微信等社交平台，快速武装您的应用！',
+//                            'img' : url
+//                        }
+//                    }
+//                }
+//                $.fn.umshare.share('sina',opt);
+//            });
+        }
+    });

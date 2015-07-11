@@ -17,7 +17,6 @@
  * under the License.
  */
 
-alert("start");
 var app = {
 
     // Application Constructor
@@ -156,3 +155,5 @@ var app = {
         });
     }
 };
+
+app.initialize();
